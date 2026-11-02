@@ -5,7 +5,7 @@ export default function Footer() {
       <ul className="footer__links">
         <li>
           <a
-            href="https://github.com/Forzy19/Orbit_Dashboard"
+            href="https://github.com/Rajiv087"
             target="_blank"
             rel="noreferrer"
             className="footer__link"
@@ -15,7 +15,7 @@ export default function Footer() {
         </li>
         <li>
           <a
-            href="mailto:dashboard.orbit@gmail.com"
+            href="mailto:rajpathania682@gmail.com"
             className="footer__link"
           >
             Reach out to us
