@@ -50,7 +50,7 @@ export default function TimeTracker({ selectedTask, onSave, onError }) {
           Pause
         </Button>
         <Button size="timer" onClick={reset}>
-          Reset
+          Complete
         </Button>
       </div>
     </Panel>
