@@ -3,8 +3,6 @@ import Button from './Button.jsx';
 import Panel from './Panel.jsx';
 import { formatTime } from '../utils.js';
 
-// App gives this component `key={selectedTask}`, so picking another task
-// remounts it: the timer stops and resets, just like the original behaviour.
 export default function TimeTracker({ selectedTask, onSave, onError }) {
   const [elapsed, setElapsed] = useState(0);
   const [running, setRunning] = useState(false);
@@ -32,7 +30,6 @@ export default function TimeTracker({ selectedTask, onSave, onError }) {
     setRunning(false);
   };
 
-  // Reset saves the elapsed time to the task, then zeroes the clock
   const reset = () => {
     if (!selectedTask) return;
     setRunning(false);

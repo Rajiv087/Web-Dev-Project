@@ -112,7 +112,6 @@ export default function TaskList({
   const [filter, setFilter] = useState('all');
 
   const submit = () => {
-    // onAdd returns true when the task was accepted
     if (onAdd(text)) setText('');
   };
 

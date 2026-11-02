@@ -7,14 +7,11 @@ import TimeTracker from './TimeTracker.jsx';
 import Statistics from './Statistics.jsx';
 import ErrorPopup from './ErrorPopup.jsx';
 
-// Older versions saved tasks as plain strings; upgrade them to { text, done }
 const normalizeTasks = (value) =>
   Array.isArray(value)
     ? value.map((t) => (typeof t === 'string' ? { text: t, done: false } : t))
     : [];
 
-// All data here is saved per user. App renders this with key={userId}, so
-// switching to another name remounts it and loads that user's own data.
 export default function Dashboard({
   userId,
   username,
@@ -24,9 +21,7 @@ export default function Dashboard({
   const k = (name) => userStorageKey(userId, name);
   const [tasks, setTasks] = useLocalStorage(k('task_list'), [], normalizeTasks);
   const [taskTimes, setTaskTimes] = useLocalStorage(k('task_times'), {});
-  // New: seconds tracked per calendar day, used by the Statistics panel
   const [dailyTimes, setDailyTimes] = useLocalStorage(k('daily_times'), {});
-  // Seconds tracked on tasks that were deleted or cleared, so per-task lines still add up to the total
   const [clearedTime, setClearedTime] = useLocalStorage(k('cleared_time'), 0);
   const [selectedTask, setSelectedTask] = useState(null);
   const [error, setError] = useState(null);
@@ -54,11 +49,9 @@ export default function Dashboard({
 
   const toggleTask = (task) => {
     setTasks(tasks.map((t) => (t.text === task ? { ...t, done: !t.done } : t)));
-    // A finished task can't be the one on the timer
     if (selectedTask === task) setSelectedTask(null);
   };
 
-  // Returns true when the edit was accepted
   const editTask = (oldText, newText) => {
     const next = newText.trim();
     if (!next) {
@@ -71,7 +64,6 @@ export default function Dashboard({
       return false;
     }
     setTasks(tasks.map((t) => (t.text === oldText ? { ...t, text: next } : t)));
-    // Tracked time is keyed by task name, so move it to the new name
     setTaskTimes(({ [oldText]: moved, ...rest }) =>
       moved === undefined ? rest : { ...rest, [next]: moved }
     );

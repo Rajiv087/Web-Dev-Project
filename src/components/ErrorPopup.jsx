@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import Button from './Button.jsx';
 
-// Modal error dialog: dimmed backdrop, closes via the OK button or Esc.
 export default function ErrorPopup({ message, onClose }) {
   const okRef = useRef(null);
 

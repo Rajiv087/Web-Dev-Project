@@ -6,18 +6,14 @@ import NameModal from './components/NameModal.jsx';
 import Dashboard from './components/Dashboard.jsx';
 import Footer from './components/Footer.jsx';
 
-// Runs once at startup: moves data saved before per-user support
-// into the account of the name that was saved with it.
 migrateLegacyData();
 
 export default function App() {
-  // Last name typed (used to prefill the welcome page). Background is a device setting.
   const [username, setUsername] = useLocalStorage('dashboard_user', '');
   const [isFirstBackground, setIsFirstBackground] = useLocalStorage(
     'isFirstBackground',
     true
   );
-  // In-memory only, so the welcome page shows on every page load
   const [started, setStarted] = useState(false);
 
   return (

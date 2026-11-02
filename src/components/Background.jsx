@@ -4,7 +4,6 @@ import waves from '../assets/wave-gradient.jpg';
 const layerClass = (visible) =>
   `background-layer${visible ? ' background-layer--visible' : ''}`;
 
-// Two stacked layers cross-fade (CSS can't animate background-image itself).
 export default function Background({ first }) {
   return (
     <>
